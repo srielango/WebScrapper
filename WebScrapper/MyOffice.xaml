@@ -1,0 +1,68 @@
+﻿<Window x:Class="WebScrapper.MyOffice"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WebScrapper"
+      mc:Ignorable="d" 
+      Title="MyOffice" WindowState="Maximized">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBlock}" x:Key="RightCell">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+        </Style>
+    </Window.Resources>
+
+    <Canvas Height="635"  Width="1000">
+        <StackPanel>
+            <DataGrid x:Name="MfTable" Height="269" Width="1000" AutoGenerateColumns="False" IsReadOnly="True" LayoutUpdated="MfTable_LayoutUpdated">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Scheme Name" Binding="{Binding SchemeName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Investment Date" Binding="{Binding InvestmentDate, StringFormat='dd-mmm-yyyy'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Investment Amount" Binding="{Binding InvestmentAmount, StringFormat=\{0:N2\}}" ElementStyle="{StaticResource RightCell}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Present Value" Binding="{Binding PresentValue, StringFormat=\{0:N2\}}" ElementStyle="{StaticResource RightCell}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Gain/Loss" Binding="{Binding GainLoss, StringFormat=\{0:N2\}}" ElementStyle="{StaticResource RightCell}"></DataGridTextColumn>
+                    <!--<DataGridTextColumn Header="Annualized Return" Binding="{Binding AnnualizedReturn}" ElementStyle="{StaticResource RightCell}"></DataGridTextColumn>-->
+                    <DataGridTextColumn Header="Annualized Return" Binding="{Binding CalculatedXirr}" ElementStyle="{StaticResource RightCell}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Absolute Return" Binding="{Binding AbsoluteReturn}" ElementStyle="{StaticResource RightCell}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Investment Strategy" Binding="{Binding InvestmentStrategy}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" Background="GhostWhite">
+                <TextBlock x:Name="lblSummary" TextAlignment="Right" FontWeight="Bold">Summary</TextBlock>
+                <TextBlock x:Name="lblInvestmentAmount" TextAlignment="Right" FontWeight="Bold"></TextBlock>
+                <TextBlock x:Name="lblPresentValue" TextAlignment="Right" FontWeight="Bold"></TextBlock>
+                <TextBlock x:Name="lblGainLoss" TextAlignment="Right" FontWeight="Bold"></TextBlock>
+                <!--<TextBlock x:Name="lblAnnualizedReturn" TextAlignment="Right" FontWeight="Bold"></TextBlock>-->
+                <TextBlock x:Name="lblCalculatedXirr" TextAlignment="Right" FontWeight="Bold"></TextBlock>
+                <TextBlock x:Name="lblAbsoluteReturn" TextAlignment="Right" FontWeight="Bold"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <Button x:Name="BtnGetFunds" Content="Get Funds" Click="BtnGetFunds_Click" Height="25" Width="90" Canvas.Left="350" Canvas.Top="300"/>
+        <Button x:Name="btnMoveDown" Content="Move Down" Click="btnMoveDown_Click" Height="25" Canvas.Left="500" Canvas.Top="300"/>
+        <Button x:Name="btnCleanSelection" Content="Clear selection" Click="btnCleanSelection_Click"  Height="25" Canvas.Left="650" Canvas.Top="300"/>
+        <StackPanel Canvas.Top="350">
+            <DataGrid x:Name="SelectedMF" Height="279" Width="1000" Canvas.Top="346" IsReadOnly="True" AutoGenerateColumns="False" LayoutUpdated="SelectedMF_LayoutUpdated">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Scheme Name" Binding="{Binding SchemeName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Investment Date" Binding="{Binding InvestmentDate, StringFormat='dd-mmm-yyyy'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Investment Amount" Binding="{Binding InvestmentAmount, StringFormat=\{0:N2\}}" ElementStyle="{StaticResource RightCell}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Present Value" Binding="{Binding PresentValue, StringFormat=\{0:N2\}}" ElementStyle="{StaticResource RightCell}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Gain/Loss" Binding="{Binding GainLoss, StringFormat=\{0:N2\}}" ElementStyle="{StaticResource RightCell}"></DataGridTextColumn>
+                    <!--<DataGridTextColumn Header="Annualized Return" Binding="{Binding AnnualizedReturn}"></DataGridTextColumn>-->
+                    <DataGridTextColumn Header="Annualized Return" Binding="{Binding CalculatedXirr}" ElementStyle="{StaticResource RightCell}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Absolute Return" Binding="{Binding AbsoluteReturn}" ElementStyle="{StaticResource RightCell}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" Background="GhostWhite">
+                <TextBlock x:Name="lblSelectedSummary" TextAlignment="Right" FontWeight="Bold">Summary</TextBlock>
+                <TextBlock x:Name="lblSelectedInvestmentAmount" TextAlignment="Right" FontWeight="Bold"></TextBlock>
+                <TextBlock x:Name="lblSelectedPresentValue" TextAlignment="Right" FontWeight="Bold"></TextBlock>
+                <TextBlock x:Name="lblSelectedGainLoss" TextAlignment="Right" FontWeight="Bold"></TextBlock>
+                <!--<TextBlock x:Name="lblSelectedAnnualizedReturn" TextAlignment="Right" FontWeight="Bold"></TextBlock>-->
+                <TextBlock x:Name="lblSelectedCalculatedXirr" TextAlignment="Right" FontWeight="Bold"></TextBlock>
+                <TextBlock x:Name="lblSelectedAbsoluteReturn" TextAlignment="Right" FontWeight="Bold"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </Canvas>
+</Window>
