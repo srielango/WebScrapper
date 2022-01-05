@@ -20,11 +20,5 @@ namespace WebScrapper
             MyOffice myOffice = new MyOffice();
             myOffice.Show();
         }
-
-        private void BtnDGTest_Click(object sender, RoutedEventArgs e)
-        {
-            DataGridTest dataGridTest = new DataGridTest();
-            dataGridTest.Show();
-        }
     }
 }

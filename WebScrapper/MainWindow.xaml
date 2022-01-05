@@ -8,7 +8,6 @@
         Title="MainWindow" Height="650" Width="800">
     <Grid>
         <Button x:Name="BtnFunds" Content="Funds" Click="BtnFunds_Click"  HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" Height="50" Width="148"/>
-        <Button x:Name="BtnDGTest" Content="DataGrid Test" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="50" Width="148" Click="BtnDGTest_Click"/>
 
     </Grid>
 </Window>
